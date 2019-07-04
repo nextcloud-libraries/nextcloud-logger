@@ -1,4 +1,4 @@
-import { ILogger } from './contracts'
+import { ILogger, LogLevel } from './contracts'
 
 export class ConsoleLogger implements ILogger {
 
@@ -8,22 +8,30 @@ export class ConsoleLogger implements ILogger {
         this.context = context
     }
 
+    private formatMessage(message: string, level: LogLevel, context: any): string {
+        let msg = '[' + level + ']'
+        if (context.app) {
+            msg += ' ' + context.app + ': '
+        }
+        return msg + message
+    }
+
     log(level: number, message: string, context: object) {
         switch (level) {
             case 0:
-                console.debug(message, context)
+                console.debug(this.formatMessage(message, LogLevel.Debug, context), context)
                 break
             case 1:
-                console.info(message, context)
+                console.info(this.formatMessage(message, LogLevel.Info, context), context)
                 break
             case 2:
-                console.warn(message, context)
+                console.warn(this.formatMessage(message, LogLevel.Warn, context), context)
                 break
             case 3:
-                console.error(message, context)
+                console.error(this.formatMessage(message, LogLevel.Error, context), context)
                 break
             default:
-                console.error(message, context)
+                console.error(this.formatMessage(message, LogLevel.Fatal, context), context)
                 break
         }
     }

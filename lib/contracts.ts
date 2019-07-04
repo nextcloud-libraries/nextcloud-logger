@@ -1,3 +1,11 @@
+export enum LogLevel {
+    Debug = 'DEBUG',
+    Info = 'INFO',
+    Warn = 'WARN',
+    Error = 'ERROR',
+    Fatal = 'FATAL',
+}
+
 export interface ILogger {
 
     debug(message: string, context?: object): void

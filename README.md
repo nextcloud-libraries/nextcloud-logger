@@ -19,7 +19,7 @@ logger.warn('it\'s just a warning, carry on')
 Right now the package uses `window.console` as log appender and produces the following output
 
 ```
-hello { app: 'mail', uid: 'christoph' }
-this should not have happened { app: 'mail', uid: 'christoph', someContext: 13 }
-it's just a warning, carry on { app: 'mail', uid: 'christoph' }
+[DEBUG] mail: hello { app: 'mail', uid: 'christoph' }
+[ERROR] mail: this should not have happened { app: 'mail', uid: 'christoph', someContext: 13 }
+[WARN] mail: it's just a warning, carry on { app: 'mail', uid: 'christoph' }
 ```
