@@ -7,6 +7,7 @@ export class LoggerBuilder {
     private factory: ILoggerFactory
 
     constructor(factory: ILoggerFactory) {
+        this.context = {}
         this.factory = factory
     }
 
