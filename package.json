@@ -2,7 +2,7 @@
   "name": "nextcloud-logger",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
     "check-types": "tsc",
