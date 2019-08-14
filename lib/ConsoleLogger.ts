@@ -10,7 +10,7 @@ export class ConsoleLogger implements ILogger {
 
     private formatMessage(message: string, level: LogLevel, context: any): string {
         let msg = '[' + level + ']'
-        if (context.app) {
+        if (context && context.app) {
             msg += ' ' + context.app + ': '
         }
         return msg + message
