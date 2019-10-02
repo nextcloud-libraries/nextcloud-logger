@@ -1,10 +1,11 @@
-# nextcloud-logger
+# @nextcloud/logger
+
 Generic JavaScript logging interface for Nextcloud apps and libraries
 
 ## Usage
 
 ```js
-import { getLoggerBuilder } from 'nextcloud-logger'
+import { getLoggerBuilder } from '@nextcloud/logger'
 
 const logger = getLoggerBuilder()
     .setApp('mail')

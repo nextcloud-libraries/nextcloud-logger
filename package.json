@@ -1,5 +1,5 @@
 {
-  "name": "nextcloud-logger",
+  "name": "@nextcloud/logger",
   "version": "0.0.6",
   "description": "",
   "main": "dist/index.js",
@@ -12,19 +12,24 @@
   "keywords": [
     "nextcloud"
   ],
+  "homepage": "https://github.com/nextcloud/nextcloud-logger#readme",
   "author": "Christoph Wurst",
   "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nextcloud/nextcloud-logger"
+  },
   "dependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "core-js": "^3.1.4"
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "core-js": "3.1.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-typescript": "^7.3.3",
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "@babel/preset-typescript": "7.3.3",
     "browserslist-config-nextcloud": "0.0.1",
-    "typescript": "^3.5.2"
+    "typescript": "3.5.2"
   },
   "browserslist": [
     "extends browserslist-config-nextcloud"
