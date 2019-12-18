@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
+    "build:doc": "typedoc --out dist/doc lib && touch dist/doc/.nojekyll",
     "check-types": "tsc",
     "dev": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,6 +30,7 @@
     "@babel/preset-env": "7.7.6",
     "@babel/preset-typescript": "7.7.4",
     "@nextcloud/browserslist-config": "^1.0.0",
+    "typedoc": "^0.15.5",
     "typescript": "3.7.3"
   },
   "browserslist": [
