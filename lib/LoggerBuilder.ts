@@ -23,8 +23,11 @@ export class LoggerBuilder {
         return this
     }
 
-    detectUser() : LoggerBuilder {
-        this.context.uid = getCurrentUser()?.uid
+    detectUser(): LoggerBuilder {
+        const user = getCurrentUser()
+        if (user !== null) {
+            this.context.uid = user.uid
+        }
 
         return this
     }
