@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@nextcloud/logger</title>
+	<title>@nextcloud/logger - v1.1.0</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">@nextcloud/logger</a>
+					<a href="index.html" class="title">@nextcloud/logger - v1.1.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -40,8 +40,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -56,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> @nextcloud/logger</h1>
+			<h1> @nextcloud/logger - v1.1.0</h1>
 		</div>
 	</div>
 </header>
@@ -67,16 +65,105 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>External modules</h3>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Enumerations</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-external-module"><a href="modules/_builder_.html" class="tsd-kind-icon">&quot;<wbr>Builder&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_consolelogger_.html" class="tsd-kind-icon">&quot;<wbr>Console<wbr>Logger&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_contracts_.html" class="tsd-kind-icon">&quot;contracts&quot;</a></li>
-								<li class="tsd-kind-external-module"><a href="modules/_index_.html" class="tsd-kind-icon">&quot;index&quot;</a></li>
+								<li class="tsd-kind-enum tsd-is-external"><a href="enums/loglevel.html" class="tsd-kind-icon">Log<wbr>Level</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-is-external"><a href="classes/consolelogger.html" class="tsd-kind-icon">Console<wbr>Logger</a></li>
+								<li class="tsd-kind-class tsd-is-external"><a href="classes/loggerbuilder.html" class="tsd-kind-icon">Logger<wbr>Builder</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/ilogger.html" class="tsd-kind-icon">ILogger</a></li>
+								<li class="tsd-kind-interface tsd-is-external"><a href="interfaces/iloggerfactory.html" class="tsd-kind-icon">ILogger<wbr>Factory</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-is-external"><a href="globals.html#buildconsolelogger" class="tsd-kind-icon">build<wbr>Console<wbr>Logger</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#getlogger" class="tsd-kind-icon">get<wbr>Logger</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#getloggerbuilder" class="tsd-kind-icon">get<wbr>Logger<wbr>Builder</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-external">
+					<a name="buildconsolelogger" class="tsd-anchor"></a>
+					<h3>build<wbr>Console<wbr>Logger</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">build<wbr>Console<wbr>Logger<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ilogger.html" class="tsd-signature-type">ILogger</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-logger/blob/d668bed/lib/ConsoleLogger.ts#L61">ConsoleLogger.ts:61</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>context: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/ilogger.html" class="tsd-signature-type">ILogger</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="getlogger" class="tsd-anchor"></a>
+					<h3>get<wbr>Logger</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Logger<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/ilogger.html" class="tsd-signature-type">ILogger</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-logger/blob/d668bed/lib/index.ts#L15">index.ts:15</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a default logger instance without any configuration</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/ilogger.html" class="tsd-signature-type">ILogger</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="getloggerbuilder" class="tsd-anchor"></a>
+					<h3>get<wbr>Logger<wbr>Builder</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Logger<wbr>Builder<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/loggerbuilder.html" class="tsd-signature-type">LoggerBuilder</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nextcloud/nextcloud-logger/blob/d668bed/lib/index.ts#L8">index.ts:8</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Build a customized logger instance</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="classes/loggerbuilder.html" class="tsd-signature-type">LoggerBuilder</a></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -86,22 +173,22 @@
 					<li class="globals current ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_builder_.html">&quot;<wbr>Builder&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_consolelogger_.html">&quot;<wbr>Console<wbr>Logger&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_contracts_.html">&quot;contracts&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-is-external">
+						<a href="classes/loggerbuilder.html" class="tsd-kind-icon">Logger<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="interfaces/ilogger.html" class="tsd-kind-icon">ILogger</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getlogger" class="tsd-kind-icon">get<wbr>Logger</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#getloggerbuilder" class="tsd-kind-icon">get<wbr>Logger<wbr>Builder</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
