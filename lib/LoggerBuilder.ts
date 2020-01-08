@@ -1,3 +1,5 @@
+import { getCurrentUser } from '@nextcloud/auth'
+
 import { ILogger, ILoggerFactory } from './contracts'
 
 export class LoggerBuilder {
@@ -18,6 +20,12 @@ export class LoggerBuilder {
 
     setUid(uid: string): LoggerBuilder {
         this.context.uid = uid
+        return this
+    }
+
+    detectUser() : LoggerBuilder {
+        this.context.uid = getCurrentUser()?.uid
+
         return this
     }
 
