@@ -1,6 +1,6 @@
 import { getCurrentUser } from '@nextcloud/auth'
 
-import { ILogger, ILoggerFactory } from './contracts'
+import { ILogger, ILoggerFactory, LogLevel } from './contracts'
 
 export class LoggerBuilder {
 
@@ -15,6 +15,11 @@ export class LoggerBuilder {
 
     setApp(appId: string): LoggerBuilder {
         this.context.app = appId
+        return this
+    }
+
+    setLogLevel(level: LogLevel) {
+        this.context.level = level
         return this
     }
 

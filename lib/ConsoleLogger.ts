@@ -9,27 +9,29 @@ export class ConsoleLogger implements ILogger {
     }
 
     private formatMessage(message: string, level: LogLevel, context: any): string {
-        let msg = '[' + level + ']'
+        let msg = '[' + LogLevel[level].toUpperCase() + ']'
         if (context && context.app) {
             msg += ' ' + context.app + ': '
         }
         return msg + message
     }
 
-    log(level: number, message: string, context: object) {
+    log(level: LogLevel, message: string, context: object) {
+	if (level < this.context?.level) return;
         switch (level) {
-            case 0:
+            case LogLevel.Debug:
                 console.debug(this.formatMessage(message, LogLevel.Debug, context), context)
                 break
-            case 1:
+            case LogLevel.Info:
                 console.info(this.formatMessage(message, LogLevel.Info, context), context)
                 break
-            case 2:
+            case LogLevel.Warn:
                 console.warn(this.formatMessage(message, LogLevel.Warn, context), context)
                 break
-            case 3:
+            case LogLevel.Error:
                 console.error(this.formatMessage(message, LogLevel.Error, context), context)
                 break
+            case LogLevel.Fatal:
             default:
                 console.error(this.formatMessage(message, LogLevel.Fatal, context), context)
                 break
@@ -37,23 +39,23 @@ export class ConsoleLogger implements ILogger {
     }
 
     debug(message: string, context?: object): void {
-        this.log(0, message, Object.assign({}, this.context, context))
+        this.log(LogLevel.Debug, message, Object.assign({}, this.context, context))
     }
 
     info(message: string, context?: object): void {
-        this.log(1, message, Object.assign({}, this.context, context))
+        this.log(LogLevel.Info, message, Object.assign({}, this.context, context))
     }
 
     warn(message: string, context?: object): void {
-        this.log(2, message, Object.assign({}, this.context, context))
+        this.log(LogLevel.Warn, message, Object.assign({}, this.context, context))
     }
 
     error(message: string, context?: object): void {
-        this.log(3, message, Object.assign({}, this.context, context))
+        this.log(LogLevel.Error, message, Object.assign({}, this.context, context))
     }
 
     fatal(message: string, context?: object): void {
-        this.log(4, message, Object.assign({}, this.context, context))
+        this.log(LogLevel.Fatal, message, Object.assign({}, this.context, context))
     }
 
 }
