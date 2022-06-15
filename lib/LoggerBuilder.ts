@@ -1,6 +1,9 @@
-import { getCurrentUser } from '@nextcloud/auth'
+/// <reference types="@nextcloud/typings" />
 
-import { ILogger, ILoggerFactory } from './contracts'
+import { getCurrentUser } from '@nextcloud/auth'
+import { ILogger, ILoggerFactory, LogLevel } from './contracts'
+
+declare var OC: Nextcloud.v22.OC | Nextcloud.v23.OC | Nextcloud.v24.OC;
 
 export class LoggerBuilder {
 
@@ -11,10 +14,21 @@ export class LoggerBuilder {
     constructor(factory: ILoggerFactory) {
         this.context = {}
         this.factory = factory
+        // Up to, including, nextcloud 24 the loglevel was not exposed
+        this.context.level = OC.config?.loglevel !== undefined ? OC.config.loglevel : LogLevel.Warn
+        // Override loglevel if we are in debug mode
+        if (OC.debug) {
+            this.context.level = LogLevel.Debug
+        }
     }
 
     setApp(appId: string): LoggerBuilder {
         this.context.app = appId
+        return this
+    }
+
+    setLogLevel(level: LogLevel) {
+        this.context.level = level
         return this
     }
 
