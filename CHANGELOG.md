@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.0 – 2022-06-27
+### Added
+- Respect server log level and debug mode settings
+### Changed
+- Dependency updates
+
 ## 2.1.0 – 2021-09-28
 ### Changed
 - Dependency updates
