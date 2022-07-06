@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.x.y - tbd
+### Changed
+- More robust agains library loading order problems
+
 ## 2.2.0 – 2022-06-27
 ### Added
 - Respect server log level and debug mode settings
