@@ -2,9 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2.x.y - tbd
-### Changed
+## 2.2.1 - 2022-07-07 
+### Fixed 
 - More robust agains library loading order problems
+- Work without the `OC` global
 
 ## 2.2.0 – 2022-06-27
 ### Added
