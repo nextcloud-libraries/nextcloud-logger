@@ -25,6 +25,17 @@ Right now the package uses `window.console` as log appender and produces the fol
 [WARN] mail: it's just a warning, carry on { app: 'mail', uid: 'christoph' }
 ```
 
+The logger tries to detect the server configured logging level by default,
+which can be configured using the `loglevel_frontend` option in the `config.php`.
+In case no logging level was configured or detection failed, the logger will fallback to the *warning* level.
+
+If the server is set to the debug mode the configured logging level will be set to the *debug* level.
+
+Any message with a lower level than the configured will not be printed on the console.
+
+You can override the logging level in both cases by setting it manually using the `setLogLevel` function
+when building the logger.
+
 ## Contributing
 
 This repository is maintained using [conventional commit messages](https://www.conventionalcommits.org/en/v1.0.0/).

@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
-    "build:doc": "typedoc --toc getLogger,getLoggerBuilder,ILogger,LoggerBuilder --excludeNotExported --mode file --out dist/doc lib/index.ts && touch dist/doc/.nojekyll",
-    "check-types": "tsc",
+    "build": "tsc -d && babel ./lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
+    "build:doc": "typedoc --out dist/doc ./lib && touch dist/doc/.nojekyll",
+    "check-types": "tsc --noEmit",
     "dev": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,8 +31,8 @@
     "@babel/preset-typescript": "^7.8.3",
     "@nextcloud/browserslist-config": "^2.0.0",
     "@nextcloud/typings": "1.5.0",
-    "typedoc": "^0.23.3",
-    "typescript": "^4.0.2"
+    "typedoc": "^0.23.24",
+    "typescript": "^4.9.4"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"

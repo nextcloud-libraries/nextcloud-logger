@@ -15,3 +15,6 @@ export function getLoggerBuilder(): LoggerBuilder {
 export function getLogger(): ILogger {
     return getLoggerBuilder().build()
 }
+
+export { type LoggerBuilder }
+export { LogLevel, type ILogger, type ILoggerFactory } from './contracts'
