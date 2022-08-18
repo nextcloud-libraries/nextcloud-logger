@@ -15,9 +15,9 @@ export class LoggerBuilder {
         this.context = {}
         this.factory = factory
         // Up to, including, nextcloud 24 the loglevel was not exposed
-        this.context.level = OC?.config?.loglevel !== undefined ? OC.config.loglevel : LogLevel.Warn
+        this.context.level = (window.hasOwnProperty('OC') && OC?.config?.loglevel !== undefined) ? OC.config.loglevel : LogLevel.Warn
         // Override loglevel if we are in debug mode
-        if (OC?.debug) {
+        if (window.hasOwnProperty('OC') && OC?.debug) {
             this.context.level = LogLevel.Debug
         }
     }
