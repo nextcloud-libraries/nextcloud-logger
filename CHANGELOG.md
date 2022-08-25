@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.3.0 - 2022-08-25
+### Fixed
+- Dependency on global OC
+### Changed
+- Dependency updates
+
 ## 2.2.1 - 2022-07-07 
 ### Fixed 
 - More robust agains library loading order problems
