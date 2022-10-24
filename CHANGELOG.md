@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.4.0 – 2022-10-24
+### Changed
+- Dependency updates
+
 ## 2.3.0 - 2022-08-25
 ### Fixed
 - Dependency on global OC
