@@ -24,3 +24,7 @@ Right now the package uses `window.console` as log appender and produces the fol
 [ERROR] mail: this should not have happened { app: 'mail', uid: 'christoph', someContext: 13 }
 [WARN] mail: it's just a warning, carry on { app: 'mail', uid: 'christoph' }
 ```
+
+## Contributing
+
+This repository is maintained using [conventional commit messages](https://www.conventionalcommits.org/en/v1.0.0/).
