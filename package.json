@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -d && babel ./lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
-    "build:doc": "typedoc --out dist/doc ./lib && touch dist/doc/.nojekyll",
+    "build:doc": "typedoc",
     "check-types": "tsc --noEmit",
     "dev": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --watch",
     "test": "echo \"Error: no test specified\" && exit 1"

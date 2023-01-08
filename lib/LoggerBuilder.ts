@@ -5,6 +5,9 @@ import { ILogger, ILoggerFactory, LogLevel } from './contracts'
 
 declare var OC: Nextcloud.v22.OC | Nextcloud.v23.OC | Nextcloud.v24.OC;
 
+/**
+ * @notExported
+ */
 export class LoggerBuilder {
 
     private context: any
