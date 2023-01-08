@@ -5,7 +5,7 @@ import { ILogger, ILoggerFactory, LogLevel } from './contracts'
 
 declare global {
     interface Window {
-        OC: Nextcloud.v23.OC | Nextcloud.v24.OC /* | Nextcloud.v25.OC */;
+        OC: Nextcloud.v23.OC | Nextcloud.v24.OC | Nextcloud.v25.OC;
     }
 }
 
