@@ -1,8 +1,12 @@
 # @nextcloud/logger
 
+[![npm](https://img.shields.io/npm/v/@nextcloud/logger.svg)](https://www.npmjs.com/package/@nextcloud/logger)
+[![Documentation](https://img.shields.io/badge/Documentation-online-brightgreen)](https://nextcloud.github.io/nextcloud-logger/)
+
 Generic JavaScript logging interface for Nextcloud apps and libraries
 
 ## Usage
+See also [API documentation](https://nextcloud.github.io/nextcloud-logger/).
 
 ```js
 import { getLoggerBuilder } from '@nextcloud/logger'
