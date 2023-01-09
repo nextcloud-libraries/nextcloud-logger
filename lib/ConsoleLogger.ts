@@ -17,7 +17,8 @@ export class ConsoleLogger implements ILogger {
     }
 
     log(level: LogLevel, message: string, context: object) {
-	if (level < this.context?.level) return;
+        if (level < this.context?.level) return;
+
         switch (level) {
             case LogLevel.Debug:
                 console.debug(this.formatMessage(message, LogLevel.Debug, context), context)

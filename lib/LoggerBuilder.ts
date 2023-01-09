@@ -5,6 +5,9 @@ import { ILogger, ILoggerFactory, LogLevel } from './contracts'
 
 declare var OC: Nextcloud.v22.OC | Nextcloud.v23.OC | Nextcloud.v24.OC;
 
+/**
+ * @notExported
+ */
 export class LoggerBuilder {
 
     private context: any
@@ -22,21 +25,27 @@ export class LoggerBuilder {
         }
     }
 
+    /** Set the app name within the logging context */
     setApp(appId: string): LoggerBuilder {
         this.context.app = appId
         return this
     }
 
+    /** Set the logging level within the logging context */
     setLogLevel(level: LogLevel) {
         this.context.level = level
         return this
     }
 
+    /** Set the user id within the logging context
+     * @see {@link detectUser}
+    */
     setUid(uid: string): LoggerBuilder {
         this.context.uid = uid
         return this
     }
 
+    /** Detect the currently logged in user and set the user id within the logging context */
     detectUser(): LoggerBuilder {
         const user = getCurrentUser()
         if (user !== null) {
@@ -46,6 +55,7 @@ export class LoggerBuilder {
         return this
     }
 
+    /** Build a logger using the logging context and factory */
     build(): ILogger {
         return this.factory(this.context)
     }
