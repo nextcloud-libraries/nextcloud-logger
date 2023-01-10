@@ -1,5 +1,6 @@
 # @nextcloud/logger
 
+[![Build Status](https://img.shields.io/github/actions/workflow/status/nextcloud/nextcloud-logger/node.yml?branch=master)](https://github.com/nextcloud/nextcloud-logger/actions/workflows/node.yml)
 [![npm](https://img.shields.io/npm/v/@nextcloud/logger.svg)](https://www.npmjs.com/package/@nextcloud/logger)
 [![Documentation](https://img.shields.io/badge/Documentation-online-brightgreen)](https://nextcloud.github.io/nextcloud-logger/)
 
