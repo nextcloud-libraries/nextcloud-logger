@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.5.0 – 2023-01-11
+### Changed
+- Postpone log level detection until OC loaded
+- Dependency updates
+### Fixed
+- Fix node scripts for building and documentation
+
 ## 2.4.0 – 2022-10-24
 ### Changed
 - Dependency updates
@@ -12,8 +19,8 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Dependency updates
 
-## 2.2.1 - 2022-07-07 
-### Fixed 
+## 2.2.1 - 2022-07-07
+### Fixed
 - More robust agains library loading order problems
 - Work without the `OC` global
 
