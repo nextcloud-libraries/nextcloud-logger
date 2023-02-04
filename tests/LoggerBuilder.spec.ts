@@ -21,6 +21,10 @@ describe('detect logging level', () => {
     })
 
     describe('without `OC.config.loglevel` (<=NC24)', () => {
+        afterEach(() => {
+            // @ts-expect-error
+            delete window.OC
+        })
         it ('without `OC.debug`', async () => {
             setReadyState('loading')
             const builder = getLoggerBuilder()
@@ -73,6 +77,10 @@ describe('detect logging level', () => {
                 debug: false,
             }
         })
+        afterAll(() => {
+            // @ts-expect-error
+            delete window.OC
+        })
 
         it ('already loaded', async () => {
             setReadyState('complete')
@@ -121,5 +129,76 @@ describe('detect logging level', () => {
             expect('level' in builder.getContext()).toBe(true)
             expect(builder.getContext().level).toBe(LogLevel.Debug)
         })
+
+        it ('with `OC.debug` override on HTML interactive phase', async () => {
+            setReadyState('loading');
+            const builder = getLoggerBuilder()
+            builder.detectLogLevel()
+
+            // Still loading so no level set
+            expect('level' in builder.getContext()).toBe(false)
+
+            // Trigger document loaded
+            window.OC.debug = true
+            setReadyState('interactive')
+            await new Promise(process.nextTick);
+
+            // Level should now be set to configured one
+            expect('level' in builder.getContext()).toBe(true)
+            expect(builder.getContext().level).toBe(LogLevel.Debug)
+        })
     })
+})
+
+test('setApp()', () => {
+    const builder = getLoggerBuilder()
+    builder.setApp('myapp')
+    expect(builder.getContext()).toHaveProperty('app', 'myapp')
+})
+
+test('setLogLevel()', () => {
+    const builder = getLoggerBuilder()
+    expect(builder.getContext()).not.toHaveProperty('level')
+    builder.setLogLevel(LogLevel.Warn)
+    expect(builder.getContext()).toHaveProperty('level', LogLevel.Warn)
+})
+
+test('setUid()', () => {
+    const builder = getLoggerBuilder()
+    expect(builder.getContext()).not.toHaveProperty('uid')
+    builder.setUid('myUser')
+    expect(builder.getContext()).toHaveProperty('uid', 'myUser')
+})
+
+describe('detectUser()', () => {
+    it('without user', () => {
+        const builder = getLoggerBuilder()
+        builder.detectUser()
+        expect(builder.getContext()).not.toHaveProperty('uid')
+    })
+
+    it('with user', async () => {
+        // @nextcloud/auth caches the current user so we have to reset the modules and set the user before importing it
+        jest.resetModules()
+        document.head.setAttribute('data-user', 'myUser')
+
+        const { getLoggerBuilder } = await import('./mocks')
+        const builder = getLoggerBuilder()
+
+        builder.detectUser()
+        expect(builder.getContext()).toHaveProperty('uid', 'myUser')
+    })
+})
+
+test('build()', () => {
+    const builder = getLoggerBuilder()
+    const logger = builder.setApp('myApp')
+        .setUid('myUser')
+        .setLogLevel(LogLevel.Debug)
+        .build() as MockedLogger
+
+    expect(logger).toBeInstanceOf(MockedLogger)
+    expect(logger.context).toHaveProperty('app', 'myApp')
+    expect(logger.context).toHaveProperty('uid', 'myUser')
+    expect(logger.context).toHaveProperty('level', LogLevel.Debug)
 })
