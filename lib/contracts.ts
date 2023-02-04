@@ -8,11 +8,11 @@ export enum LogLevel {
 
 export interface ILogger {
 
-    debug(message: string, context?: object): void
-    info(message: string, context?: object): void
-    warn(message: string, context?: object): void
-    error(message: string, context?: object): void
-    fatal(message: string, context?: object): void
+    debug(message: string|Error, context?: object): void
+    info(message: string|Error, context?: object): void
+    warn(message: string|Error, context?: object): void
+    error(message: string|Error, context?: object): void
+    fatal(message: string|Error, context?: object): void
 
 }
 

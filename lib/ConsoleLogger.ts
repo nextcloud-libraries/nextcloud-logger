@@ -5,19 +5,32 @@ export class ConsoleLogger implements ILogger {
     private context: any
 
     constructor(context: any) {
-        this.context = context
+        this.context = context || {}
     }
 
-    private formatMessage(message: string, level: LogLevel, context: any): string {
+    private formatMessage(message: string|Error, level: LogLevel, context: any): string {
         let msg = '[' + LogLevel[level].toUpperCase() + ']'
+
         if (context && context.app) {
             msg += ' ' + context.app + ': '
         }
-        return msg + message
+
+        if (typeof message === 'string') return msg + message
+
+        // basic error formatting
+        msg += `Unexpected ${message.name}`
+        if (message.message) msg += ` "${message.message}"`
+        // only add stack trace when debugging
+        if (level === LogLevel.Debug && message.stack) msg += `\n\nStack trace:\n${message.stack}`
+
+        return msg
     }
 
-    log(level: LogLevel, message: string, context: object) {
+    log(level: LogLevel, message: string|Error, context: object) {
         if (level < this.context?.level) return;
+
+        // Add error object to context
+        if (typeof message === 'object' && (context as any).error === undefined) (context as any).error = message
 
         switch (level) {
             case LogLevel.Debug:
@@ -39,23 +52,23 @@ export class ConsoleLogger implements ILogger {
         }
     }
 
-    debug(message: string, context?: object): void {
+    debug(message: string|Error, context?: object): void {
         this.log(LogLevel.Debug, message, Object.assign({}, this.context, context))
     }
 
-    info(message: string, context?: object): void {
+    info(message: string|Error, context?: object): void {
         this.log(LogLevel.Info, message, Object.assign({}, this.context, context))
     }
 
-    warn(message: string, context?: object): void {
+    warn(message: string|Error, context?: object): void {
         this.log(LogLevel.Warn, message, Object.assign({}, this.context, context))
     }
 
-    error(message: string, context?: object): void {
+    error(message: string|Error, context?: object): void {
         this.log(LogLevel.Error, message, Object.assign({}, this.context, context))
     }
 
-    fatal(message: string, context?: object): void {
+    fatal(message: string|Error, context?: object): void {
         this.log(LogLevel.Fatal, message, Object.assign({}, this.context, context))
     }
 
