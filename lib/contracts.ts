@@ -1,7 +1,7 @@
 export enum LogLevel {
     Debug = 0,
-    Info  = 1,
-    Warn  = 2,
+    Info = 1,
+    Warn = 2,
     Error = 3,
     Fatal = 4,
 }
@@ -16,6 +16,8 @@ export interface ILogger {
 
 }
 
+export type LoggerContext = Record<string, unknown> & { app?: string, uid?: string, level?: LogLevel }
+
 export interface ILoggerFactory {
-    (context: any): ILogger
+    (context: LoggerContext): ILogger
 }

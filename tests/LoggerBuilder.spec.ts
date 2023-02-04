@@ -1,125 +1,128 @@
 import { LogLevel } from '../lib/contracts'
 import { getLoggerBuilder, MockedLogger } from './mocks'
 
-
 describe('detect logging level', () => {
-    let state = window.document.readyState
+	let state = window.document.readyState
 
-    /** Set document ready state and emit events */
-    const setReadyState = (newState: typeof state) => {
-        state = newState
-        if (state === 'complete') global.window.dispatchEvent(new Event('load'))
-        global.window.document.dispatchEvent(new Event('readystatechange'))
-    }
-    
-    beforeAll(() => {
-        state = global.window.document.readyState
-        
-        Object.defineProperty(global.window.document, "readyState", {
-            get() { return state }
-        })
-    })
+	/**
+	 * Set document ready state and emit events
+	 *
+	 * @param newState new document loading state
+	 */
+	const setReadyState = (newState: DocumentReadyState) => {
+		state = newState
+		if (state === 'complete') global.window.dispatchEvent(new Event('load'))
+		global.window.document.dispatchEvent(new Event('readystatechange'))
+	}
 
-    describe('without `OC.config.loglevel` (<=NC24)', () => {
-        it ('without `OC.debug`', async () => {
-            setReadyState('loading')
-            const builder = getLoggerBuilder()
-            builder.detectLogLevel()
+	beforeAll(() => {
+		state = global.window.document.readyState
 
-            // Still loading so no level set
-            expect('level' in builder.getContext()).toBe(false)
+		Object.defineProperty(global.window.document, 'readyState', {
+			get() { return state },
+		})
+	})
 
-            // Trigger document loaded
-            setReadyState('complete')
-            await new Promise(process.nextTick);
+	describe('without `OC.config.loglevel` (<=NC24)', () => {
+		it('without `OC.debug`', async () => {
+			setReadyState('loading')
+			const builder = getLoggerBuilder()
+			builder.detectLogLevel()
 
-            // Level should now be set
-            expect('level' in builder.getContext()).toBe(true)
+			// Still loading so no level set
+			expect('level' in builder.getContext()).toBe(false)
 
-            // Should default to warn as NC24 has no `OC.config.loglevel`
-            expect(builder.getContext().level).toBe(LogLevel.Warn)
-        })
+			// Trigger document loaded
+			setReadyState('complete')
+			await new Promise(process.nextTick)
 
-        it ('with `OC.debug`', async () => {
-            setReadyState('loading')
-            const builder = getLoggerBuilder()
-            builder.detectLogLevel()
+			// Level should now be set
+			expect('level' in builder.getContext()).toBe(true)
 
-            // Still loading so no level set
-            expect('level' in builder.getContext()).toBe(false)
+			// Should default to warn as NC24 has no `OC.config.loglevel`
+			expect(builder.getContext().level).toBe(LogLevel.Warn)
+		})
 
-            // Mock OC and trigger document loaded
-            // @ts-ignore
-            window.OC = { debug: true }
-            setReadyState('complete')
-            await new Promise(process.nextTick);
+		it('with `OC.debug`', async () => {
+			setReadyState('loading')
+			const builder = getLoggerBuilder()
+			builder.detectLogLevel()
 
-            // Level should now be set
-            expect('level' in builder.getContext()).toBe(true)
+			// Still loading so no level set
+			expect('level' in builder.getContext()).toBe(false)
 
-            // Should default to warn as NC24 has no `OC.config.loglevel`
-            expect(builder.getContext().level).toBe(LogLevel.Debug)
-        })
-    })
+			// Mock OC and trigger document loaded
+			// @ts-ignore
+			window.OC = { debug: true }
+			setReadyState('complete')
+			await new Promise(process.nextTick)
 
-    /* Since NC25 configuring the loglevel is possible */
-    describe('with `OC.config.loglevel`', () => {
-        beforeAll(() => {
-            // @ts-ignore
-            window.OC = {
-                config: {
-                    loglevel: LogLevel.Info,
-                },
-                debug: false,
-            }
-        })
+			// Level should now be set
+			expect('level' in builder.getContext()).toBe(true)
 
-        it ('already loaded', async () => {
-            setReadyState('complete')
-            const builder = getLoggerBuilder()
-            builder.detectLogLevel()
+			// Should default to warn as NC24 has no `OC.config.loglevel`
+			expect(builder.getContext().level).toBe(LogLevel.Debug)
+		})
+	})
 
-            expect('level' in builder.getContext()).toBe(true)
-            expect(builder.getContext().level).toBe(window.OC.config.loglevel)
-        })
+	/* Since NC25 configuring the loglevel is possible */
+	describe('with `OC.config.loglevel`', () => {
+		beforeAll(() => {
+			// @ts-ignore
+			window.OC = {
+				config: {
+					loglevel: LogLevel.Info,
+				},
+				debug: false,
+			}
+		})
 
-        it ('stil loading', async () => {
-            setReadyState('loading');
-            const builder = getLoggerBuilder()
-            builder.detectLogLevel()
-            const logger = builder.build() as MockedLogger
+		it('already loaded', async () => {
+			setReadyState('complete')
+			const builder = getLoggerBuilder()
+			builder.detectLogLevel()
 
-            // Still loading so no level set
-            expect('level' in builder.getContext()).toBe(false)
-            expect('level' in logger.context).toBe(false)
+			expect('level' in builder.getContext()).toBe(true)
+			expect(builder.getContext().level).toBe(window.OC.config.loglevel)
+		})
 
-            // Trigger document loaded
-            setReadyState('complete')
-            await new Promise(process.nextTick);
+		it('stil loading', async () => {
+			setReadyState('loading')
+			const builder = getLoggerBuilder()
+			builder.detectLogLevel()
+			const logger = builder.build() as MockedLogger
 
-            // Level should now be set to configured one, also in logger
-            expect('level' in builder.getContext()).toBe(true)
-            expect('level' in logger.context).toBe(true)
-            expect(builder.getContext().level).toBe(window.OC.config.loglevel)
-            expect(logger.context.level).toBe(window.OC.config.loglevel)
-        })
+			// Still loading so no level set
+			expect('level' in builder.getContext()).toBe(false)
+			expect('level' in logger.context).toBe(false)
 
-        it ('with `OC.debug` override', async () => {
-            setReadyState('loading');
-            const builder = getLoggerBuilder()
-            builder.detectLogLevel()
+			// Trigger document loaded
+			setReadyState('complete')
+			await new Promise(process.nextTick)
 
-            // Still loading so no level set
-            expect('level' in builder.getContext()).toBe(false)
+			// Level should now be set to configured one, also in logger
+			expect('level' in builder.getContext()).toBe(true)
+			expect('level' in logger.context).toBe(true)
+			expect(builder.getContext().level).toBe(window.OC.config.loglevel)
+			expect(logger.context.level).toBe(window.OC.config.loglevel)
+		})
 
-            // Trigger document loaded
-            window.OC.debug = true
-            setReadyState('complete')
-            await new Promise(process.nextTick);
+		it('with `OC.debug` override', async () => {
+			setReadyState('loading')
+			const builder = getLoggerBuilder()
+			builder.detectLogLevel()
 
-            // Level should now be set to configured one
-            expect('level' in builder.getContext()).toBe(true)
-            expect(builder.getContext().level).toBe(LogLevel.Debug)
-        })
-    })
+			// Still loading so no level set
+			expect('level' in builder.getContext()).toBe(false)
+
+			// Trigger document loaded
+			window.OC.debug = true
+			setReadyState('complete')
+			await new Promise(process.nextTick)
+
+			// Level should now be set to configured one
+			expect('level' in builder.getContext()).toBe(true)
+			expect(builder.getContext().level).toBe(LogLevel.Debug)
+		})
+	})
 })
