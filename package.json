@@ -44,5 +44,9 @@
   "engines": {
     "node": "^16.0.0",
     "npm": "^7.0.0 || ^8.0.0"
-  }
+  },
+  "files": [
+    "dist/",
+    "CHANGELOG.md"
+  ]
 }
