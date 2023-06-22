@@ -1,13 +1,15 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "ESNext",
         "module": "commonjs",
         "declaration": true,
         "outDir": "./dist",
+        "declarationDir": "./dist",
         "strict": true,
         "lib": [
             "es6",
             "dom"
         ]
-    }
+    },
+    "include": [ "lib/*" ]
 }
