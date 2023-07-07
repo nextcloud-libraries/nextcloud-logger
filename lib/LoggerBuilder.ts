@@ -67,7 +67,9 @@ export class LoggerBuilder {
 		return this
 	}
 
-	/** Detect and use logging level configured in nextcloud config */
+	/**
+	 * Detect and use logging level configured in nextcloud config
+	 */
 	detectLogLevel(): LoggerBuilder {
 		// eslint-disable-next-line @typescript-eslint/no-this-alias
 		const self = this

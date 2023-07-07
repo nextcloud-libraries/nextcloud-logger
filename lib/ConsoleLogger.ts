@@ -9,10 +9,10 @@ export class ConsoleLogger implements ILogger {
 	}
 
 	private formatMessage(message: string|Error, level: LogLevel, context?: IContext): string {
-		let msg = '[' + LogLevel[level].toUpperCase() + ']'
+		let msg = '[' + LogLevel[level].toUpperCase() + '] '
 
 		if (context && context.app) {
-			msg += ' ' + context.app + ': '
+			msg += context.app + ': '
 		}
 
 		if (typeof message === 'string') return msg + message
