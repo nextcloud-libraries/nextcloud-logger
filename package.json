@@ -9,7 +9,8 @@
     "build:doc": "typedoc",
     "check-types": "tsc --noEmit",
     "dev": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --watch",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [
     "nextcloud"
