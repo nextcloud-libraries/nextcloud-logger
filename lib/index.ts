@@ -6,14 +6,14 @@ import { LoggerBuilder } from './LoggerBuilder'
  * Build a customized logger instance
  */
 export function getLoggerBuilder(): LoggerBuilder {
-    return new LoggerBuilder(buildConsoleLogger)
+	return new LoggerBuilder(buildConsoleLogger)
 }
 
 /**
  * Get a default logger instance without any configuration
  */
 export function getLogger(): ILogger {
-    return getLoggerBuilder().build()
+	return getLoggerBuilder().build()
 }
 
 export { type LoggerBuilder }
