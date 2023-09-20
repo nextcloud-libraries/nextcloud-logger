@@ -1,7 +1,7 @@
 {
   "name": "@nextcloud/logger",
   "version": "2.6.1",
-  "description": "",
+  "description": "Generic JavaScript logging interface for Nextcloud apps and libraries",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
