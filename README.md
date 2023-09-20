@@ -1,12 +1,12 @@
 # @nextcloud/logger
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/nextcloud/nextcloud-logger/node.yml?branch=master)](https://github.com/nextcloud/nextcloud-logger/actions/workflows/node.yml) [![Code coverage](https://img.shields.io/codecov/c/gh/nextcloud/nextcloud-logger/master)](https://app.codecov.io/gh/nextcloud/nextcloud-logger) [![npm](https://img.shields.io/npm/v/@nextcloud/logger.svg)](https://www.npmjs.com/package/@nextcloud/logger)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/nextcloud-libraries/nextcloud-logger/node.yml?branch=master)](https://github.com/nextcloud-libraries/nextcloud-logger/actions/workflows/node.yml) [![Code coverage](https://img.shields.io/codecov/c/gh/nextcloud-libraries/nextcloud-logger/master)](https://app.codecov.io/gh/nextcloud-libraries/nextcloud-logger) [![npm](https://img.shields.io/npm/v/@nextcloud/logger.svg)](https://www.npmjs.com/package/@nextcloud/logger)
 [![Documentation](https://img.shields.io/badge/Documentation-online-brightgreen)](https://nextcloud.github.io/nextcloud-logger/)
 
 Generic JavaScript logging interface for Nextcloud apps and libraries
 
 ## Usage
-See also [API documentation](https://nextcloud.github.io/nextcloud-logger/).
+See also [API documentation](https://nextcloud-libraries.github.io/nextcloud-logger/).
 
 ```js
 import { getLoggerBuilder } from '@nextcloud/logger'
