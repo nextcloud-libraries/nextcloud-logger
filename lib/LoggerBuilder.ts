@@ -1,11 +1,12 @@
-/// <reference types="@nextcloud/typings" />
-
 import { getCurrentUser } from '@nextcloud/auth'
 import { IContext, ILogger, ILoggerFactory, LogLevel } from './contracts'
 
 declare global {
     interface Window {
-        OC: Nextcloud.v23.OC | Nextcloud.v24.OC | Nextcloud.v25.OC;
+        _oc_config: {
+            loglevel: LogLevel,
+        },
+        _oc_debug: boolean,
     }
 }
 
@@ -76,11 +77,11 @@ export class LoggerBuilder {
 
 		// Use arrow function to prevent undefined `this` within event handler
 		const onLoaded = () => {
-			if (document.readyState === 'complete' || (document.readyState === 'interactive' && window.OC !== undefined)) {
+			if (document.readyState === 'complete' || (document.readyState === 'interactive')) {
 				// Up to, including, nextcloud 24 the loglevel was not exposed
-				self.context.level = window.OC?.config?.loglevel !== undefined ? window.OC.config.loglevel : LogLevel.Warn
+				self.context.level = window._oc_config?.loglevel ?? LogLevel.Warn
 				// Override loglevel if we are in debug mode
-				if (window.OC?.debug) {
+				if (window._oc_debug) {
 					self.context.level = LogLevel.Debug
 				}
 				document.removeEventListener('readystatechange', onLoaded)
