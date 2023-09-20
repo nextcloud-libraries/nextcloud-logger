@@ -1,15 +1,25 @@
 {
   "name": "@nextcloud/logger",
-  "version": "2.7.0",
+  "version": "3.0.0-beta",
   "description": "Generic JavaScript logging interface for Nextcloud apps and libraries",
-  "main": "dist/index.js",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
-    "build": "tsc -d && babel ./lib --out-dir dist --extensions '.ts,.tsx' --source-maps",
+    "build": "vite --mode production build",
     "build:doc": "typedoc",
     "check-types": "tsc --noEmit",
-    "dev": "babel ./lib --out-dir dist --extensions '.ts,.tsx' --watch",
-    "lint": "eslint lib *.js",
+    "dev": "vite --mode development build",
+    "dev:watch": "vite --mode development build --watch",
+    "lint": "eslint lib",
     "lint:fix": "eslint lib --fix",
     "test": "jest",
     "test:coverage": "jest --coverage"
@@ -29,13 +39,10 @@
     "core-js": "^3.6.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7",
-    "@babel/preset-env": "^7.8.7",
-    "@babel/preset-typescript": "^7.8.3",
     "@nextcloud/browserslist-config": "^3.0.0",
     "@nextcloud/eslint-config": "^8.3.0-beta.2",
     "@nextcloud/typings": "^1.6.0",
+    "@nextcloud/vite-config": "^1.0.0-beta.19",
     "@types/jest": "^29.2.5",
     "@types/node": "^20.6.3",
     "eslint": "^8.44.0",
@@ -43,7 +50,8 @@
     "jest-environment-jsdom": "^29.3.1",
     "ts-jest": "^29.0.3",
     "typedoc": "^0.25.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vite": "4.4.9"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
