@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.7.0 - 2023-09-20
+**Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-logger/compare/v2.6.1...v2.7.0
+
+*Note: The packages of the previous releases (2.6.x) were broken.*
+
+### Fixed
+* chore: Add missing description to package by @susnux in https://github.com/nextcloud-libraries/nextcloud-logger/pull/557
+
+### Changed
+* Updated dependencies
+
+## 2.6.1 - 2023-09-20
+**Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-logger/compare/v2.6.0...v2.6.1
+
+### Fixed
+* Remove permission check in publish workflows by @artonge in https://github.com/nextcloud-libraries/nextcloud-logger/pull/551
+
+## 2.6.0 - 2023-09-20
+**Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-logger/compare/v2.5.0...v2.6.0
+
+### Added
+* Allow logging errors when passed as message parameter by @susnux in https://github.com/nextcloud-libraries/nextcloud-logger/pull/444
+
+### Fixed
+* Added missing test cases for `LoggerBuilder` and `index` by @susnux in https://github.com/nextcloud-libraries/* Only add required files to npm package by @susnux in https://github.com/nextcloud-libraries/nextcloud-logger/pull/443
+* Add typings to published package by @susnux in https://github.com/nextcloud-libraries/nextcloud-logger/pull/442
+* Add unit tests workflow by @susnux in https://github.com/nextcloud-libraries/nextcloud-logger/pull/504
+* Lint files using ESLint and add CI workflow by @susnux in https://github.com/nextcloud-libraries/nextcloud-logger/pull/505
+* fix: Add missing unit tests for `ConsoleLogger` by @susnux in https://github.com/nextcloud-libraries/nextcloud-logger/pull/506
+* Use the original property for debug and loglevel by @artonge in https://github.com/nextcloud-libraries/nextcloud-logger/pull/550
+
+### Changed
+* chore: update node engines to next LTS by @nextcloud-command in https://github.com/nextcloud-libraries/nextcloud-logger/pull/496
+* Updated dependencies
+
+
+### New Contributors
+* @artonge made their first contribution in https://github.com/nextcloud-libraries/nextcloud-logger/pull/550
+
 ## 2.5.0 – 2023-01-11
 ### Changed
 - Postpone log level detection until OC loaded
