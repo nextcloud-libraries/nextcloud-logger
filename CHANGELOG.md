@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.0 - 2024-04-22
+Note: This package is now ESM by default.
+
+### Changed
+* chore: Migrate to vite and `@nextcloud/vite-config` to also build an ESM entry point
+* fix: Update NPM version to LTS version 10
+
 ## 2.7.0 - 2023-09-20
 **Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-logger/compare/v2.6.1...v2.7.0
 
