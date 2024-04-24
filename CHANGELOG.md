@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.1 - 2024-04-24
+### Fixed
+* fix: Drop CoreJS from package.json
+
+### Changed
+* chore(deps): Bump @nextcloud/auth from 2.2.1 to 2.3.0
+* feat: Migrate to vitest for testing
+
 ## 3.0.0 - 2024-04-22
 Note: This package is now ESM by default.
 
