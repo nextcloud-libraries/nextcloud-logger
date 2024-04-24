@@ -1,3 +1,4 @@
+import { afterEach, describe, expect, it, test, vi } from 'vitest'
 import { ConsoleLogger, buildConsoleLogger } from '../lib/ConsoleLogger'
 
 // Dummy Error
@@ -11,7 +12,7 @@ class MyError extends Error {
 }
 
 afterEach(() => {
-	jest.resetAllMocks()
+	vi.resetAllMocks()
 })
 
 test('building the console logger', () => {
@@ -19,8 +20,8 @@ test('building the console logger', () => {
 	expect(logger).toBeInstanceOf(ConsoleLogger)
 
 	// ensure initial context is preserved
-	const consoleArgs = [] as any[]
-	const warn = jest.spyOn(console, 'warn').mockImplementation((...args) => consoleArgs.push(...args))
+	const consoleArgs = [] as unknown[]
+	const warn = vi.spyOn(console, 'warn').mockImplementation((...args) => consoleArgs.push(...args))
 	logger.warn('some message', { foo: 'bar' })
 	expect(warn).toHaveBeenCalledTimes(1)
 	expect(consoleArgs).toHaveLength(2)
@@ -28,11 +29,11 @@ test('building the console logger', () => {
 })
 
 describe('ConsoleLogger', () => {
-	afterEach(() => jest.resetAllMocks())
+	afterEach(() => { vi.resetAllMocks() })
 
 	it('logs debug messages', () => {
 		const logger = new ConsoleLogger()
-		const debug = jest.spyOn(window.console, 'debug').mockImplementation(() => {})
+		const debug = vi.spyOn(window.console, 'debug').mockImplementation(() => {})
 
 		logger.debug('Should be logged')
 		expect(debug).toHaveBeenCalledTimes(1)
@@ -41,7 +42,7 @@ describe('ConsoleLogger', () => {
 
 	it('logs info messages', () => {
 		const logger = new ConsoleLogger()
-		const info = jest.spyOn(window.console, 'info').mockImplementation(() => {})
+		const info = vi.spyOn(window.console, 'info').mockImplementation(() => {})
 
 		logger.info('Should be logged')
 		expect(info).toHaveBeenCalledTimes(1)
@@ -50,7 +51,7 @@ describe('ConsoleLogger', () => {
 
 	it('logs warn messages', () => {
 		const logger = new ConsoleLogger()
-		const warn = jest.spyOn(window.console, 'warn').mockImplementation(() => {})
+		const warn = vi.spyOn(window.console, 'warn').mockImplementation(() => {})
 
 		logger.warn('Should be logged')
 		expect(warn).toHaveBeenCalledTimes(1)
@@ -59,7 +60,7 @@ describe('ConsoleLogger', () => {
 
 	it('logs error messages', () => {
 		const logger = new ConsoleLogger()
-		const error = jest.spyOn(window.console, 'error').mockImplementation(() => {})
+		const error = vi.spyOn(window.console, 'error').mockImplementation(() => {})
 
 		logger.error('Should be logged')
 		expect(error).toHaveBeenCalledTimes(1)
@@ -68,7 +69,7 @@ describe('ConsoleLogger', () => {
 
 	it('logs fatal messages', () => {
 		const logger = new ConsoleLogger()
-		const error = jest.spyOn(window.console, 'error').mockImplementation(() => {})
+		const error = vi.spyOn(window.console, 'error').mockImplementation(() => {})
 
 		logger.fatal('Should be logged')
 		expect(error).toHaveBeenCalledTimes(1)
@@ -77,7 +78,7 @@ describe('ConsoleLogger', () => {
 
 	it('allows global context', () => {
 		const logger = new ConsoleLogger({ foo: 'bar' })
-		const debug = jest.spyOn(window.console, 'debug').mockImplementation(() => {})
+		const debug = vi.spyOn(window.console, 'debug').mockImplementation(() => {})
 
 		logger.debug('Should be logged')
 		expect(debug).toHaveBeenCalledTimes(1)
@@ -87,7 +88,7 @@ describe('ConsoleLogger', () => {
 
 	it('allows extending global context', () => {
 		const logger = new ConsoleLogger({ one: 1, two: 2 })
-		const debug = jest.spyOn(window.console, 'debug').mockImplementation(() => {})
+		const debug = vi.spyOn(window.console, 'debug').mockImplementation(() => {})
 
 		logger.debug('Should be logged', { two: 3 })
 		expect(debug).toHaveBeenCalledTimes(1)
@@ -97,7 +98,7 @@ describe('ConsoleLogger', () => {
 
 	it('allows extending empty global context', () => {
 		const logger = new ConsoleLogger()
-		const debug = jest.spyOn(window.console, 'debug').mockImplementation(() => {})
+		const debug = vi.spyOn(window.console, 'debug').mockImplementation(() => {})
 
 		logger.debug('Should be logged', { one: 1 })
 		expect(debug).toHaveBeenCalledTimes(1)
@@ -108,7 +109,7 @@ describe('ConsoleLogger', () => {
 	it('only logs configured levels', () => {
 		const logger = new ConsoleLogger({ level: 2 })
 
-		const debug = jest.spyOn(window.console, 'debug')
+		const debug = vi.spyOn(window.console, 'debug')
 
 		logger.debug('Should not be logged')
 		expect(debug).toHaveBeenCalledTimes(0)
@@ -119,7 +120,7 @@ describe('ConsoleLogger', () => {
 		const logger = new ConsoleLogger({})
 
 		const console = [] as [string, unknown][]
-		const warn = jest.spyOn(window.console, 'warn').mockImplementation((msg, ctx) => console.push([msg, ctx]))
+		const warn = vi.spyOn(window.console, 'warn').mockImplementation((msg, ctx) => console.push([msg, ctx]))
 
 		logger.warn(error)
 		expect(warn).toHaveBeenCalledTimes(1)
@@ -134,7 +135,7 @@ describe('ConsoleLogger', () => {
 		const logger = new ConsoleLogger({})
 
 		const console = [] as [string, unknown][]
-		const debug = jest.spyOn(window.console, 'debug').mockImplementation((msg, ctx) => console.push([msg, ctx]))
+		const debug = vi.spyOn(window.console, 'debug').mockImplementation((msg, ctx) => console.push([msg, ctx]))
 
 		logger.debug(error)
 		expect(debug).toHaveBeenCalledTimes(1)
@@ -148,7 +149,7 @@ describe('ConsoleLogger', () => {
 		const logger = new ConsoleLogger({ error: 'none' })
 
 		const console = [] as [string, unknown][]
-		const warn = jest.spyOn(window.console, 'warn').mockImplementation((msg, ctx) => console.push([msg, ctx]))
+		const warn = vi.spyOn(window.console, 'warn').mockImplementation((msg, ctx) => console.push([msg, ctx]))
 
 		logger.warn(error)
 		expect(warn).toHaveBeenCalledTimes(1)
