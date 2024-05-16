@@ -1,15 +1,6 @@
 import { getCurrentUser } from '@nextcloud/auth'
 import { IContext, ILogger, ILoggerFactory, LogLevel } from './contracts'
 
-declare global {
-    interface Window {
-        _oc_config: {
-            loglevel: LogLevel,
-        },
-        _oc_debug: boolean,
-    }
-}
-
 /**
  * @notExported
  */
