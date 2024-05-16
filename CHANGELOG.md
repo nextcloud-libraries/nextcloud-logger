@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.2 - 2024-05-16
+### Fixed
+* fix: Do not leak global declared types into distribution bundle
+
 ## 3.0.1 - 2024-04-24
 ### Fixed
 * fix: Drop CoreJS from package.json
