@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2020-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 import { getCurrentUser } from '@nextcloud/auth'
 import { IContext, ILogger, ILoggerFactory, LogLevel } from './contracts'
 

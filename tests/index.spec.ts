@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 import { expect, test } from 'vitest'
 import { LogLevel, getLogger, getLoggerBuilder } from '../lib/index'
 import { ConsoleLogger } from '../lib/ConsoleLogger'

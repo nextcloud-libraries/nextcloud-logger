@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2019-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 import { IContext, ILogger, LogLevel } from './contracts'
 
 export class ConsoleLogger implements ILogger {

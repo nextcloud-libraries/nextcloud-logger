@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
 import type { NextcloudUser } from '@nextcloud/auth'
 
 import { afterAll, afterEach, beforeAll, describe, expect, it, test, vi } from 'vitest'
