@@ -1,8 +1,7 @@
 /**
- * SPDX-FileCopyrightText: 2024 Ferdinand Thiessen <opensource@fthiessen.de>
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later or LGPL-3.0-or-later
  */
-
 import type { LogLevel } from './contracts'
 
 declare global {
