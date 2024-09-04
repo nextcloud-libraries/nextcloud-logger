@@ -43,13 +43,13 @@
     "@nextcloud/typings": "^1.9.1",
     "@nextcloud/vite-config": "^2.2.2",
     "@types/node": "^20.14.12",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/coverage-v8": "^2.0.5",
     "eslint": "^8.57.0",
     "happy-dom": "^14.12.3",
     "typedoc": "^0.26.6",
     "typescript": "^5.5.4",
     "vite": "^5.4.3",
-    "vitest": "^1.5.1"
+    "vitest": "^2.0.5"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
