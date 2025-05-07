@@ -18,7 +18,7 @@
     "build:doc": "typedoc",
     "check-types": "tsc --noEmit",
     "dev": "vite --mode development build",
-    "dev:watch": "vite --mode development build --watch",
+    "watch": "vite --mode development build --watch",
     "lint": "eslint lib",
     "lint:fix": "eslint lib --fix",
     "test": "vitest run",
