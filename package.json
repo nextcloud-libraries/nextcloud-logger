@@ -35,7 +35,7 @@
     "url": "https://github.com/nextcloud-libraries/nextcloud-logger"
   },
   "dependencies": {
-    "@nextcloud/auth": "^2.4.0"
+    "@nextcloud/auth": "^2.5.1"
   },
   "devDependencies": {
     "@nextcloud/browserslist-config": "^3.0.1",
