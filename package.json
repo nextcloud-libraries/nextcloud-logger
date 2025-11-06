@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/logger",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Generic JavaScript logging interface for Nextcloud apps and libraries",
   "keywords": [
     "nextcloud"
@@ -11,7 +11,7 @@
     "url": "https://github.com/nextcloud-libraries/nextcloud-logger"
   },
   "license": "GPL-3.0-or-later",
-  "author": "Christoph Wurst",
+  "author": "Nextcloud GmbH and Nextcloud contributors",
   "type": "module",
   "exports": {
     ".": {
