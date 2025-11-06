@@ -42,7 +42,7 @@
     "extends @nextcloud/browserslist-config"
   ],
   "dependencies": {
-    "@nextcloud/auth": "^2.5.1"
+    "@nextcloud/auth": "^2.5.3"
   },
   "devDependencies": {
     "@nextcloud/browserslist-config": "^3.0.1",
