@@ -6,6 +6,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 3.0.3 - 2025-11-07
+### Changed
+* Update Node and NPM versions ([#896](https://github.com/nextcloud-libraries/nextcloud-logger/pull/896))
+  This package now supports being used with Node 22 and Node 24.
+* Add SPDX headers ([#683](https://github.com/nextcloud-libraries/nextcloud-logger/pull/683))
+* Migrate REUSE to TOML format  ([#696](https://github.com/nextcloud-libraries/nextcloud-logger/pull/696))
+* chore(deps): Bump @nextcloud/auth from 2.3.0 to 2.4.0 ([#717](https://github.com/nextcloud-libraries/nextcloud-logger/pull/717))
+* chore(deps): Bump rollup from 4.21.0 to 4.22.4 ([#735](https://github.com/nextcloud-libraries/nextcloud-logger/pull/735))
+* chore(deps): Bump @nextcloud/auth from 2.4.0 to 2.5.1 ([#863](https://github.com/nextcloud-libraries/nextcloud-logger/pull/863))
+* chore: move from `dev:watch` to `watch` ([#859](https://github.com/nextcloud-libraries/nextcloud-logger/pull/859))
+* ci: update reuse.yml workflow from template ([#887](https://github.com/nextcloud-libraries/nextcloud-logger/pull/887))
+* ci: update npm-publish.yml workflow from template ([#888](https://github.com/nextcloud-libraries/nextcloud-logger/pull/888))
+* ci: update dependabot-approve-merge.yml from org ([#724](https://github.com/nextcloud-libraries/nextcloud-logger/pull/724))
+
 ## 3.0.2 - 2024-05-16
 ### Fixed
 * fix: Do not leak global declared types into distribution bundle
