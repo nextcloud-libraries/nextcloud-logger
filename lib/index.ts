@@ -2,9 +2,14 @@
  * SPDX-FileCopyrightText: 2019-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { buildConsoleLogger } from './ConsoleLogger'
-import { ILogger } from './contracts'
-import { LoggerBuilder } from './LoggerBuilder'
+
+import type { ILogger } from './contracts.ts'
+
+import { buildConsoleLogger } from './ConsoleLogger.ts'
+import { LoggerBuilder } from './LoggerBuilder.ts'
+
+export type { LoggerBuilder }
+export type { ILogger, ILoggerFactory } from './contracts.ts'
 
 /**
  * Build a customized logger instance
@@ -20,5 +25,4 @@ export function getLogger(): ILogger {
 	return getLoggerBuilder().build()
 }
 
-export { type LoggerBuilder }
-export { LogLevel, type ILogger, type ILoggerFactory } from './contracts'
+export { LogLevel } from './contracts.ts'
