@@ -74,11 +74,8 @@ export class LoggerBuilder {
 		const onLoaded = () => {
 			if (document.readyState === 'complete' || (document.readyState === 'interactive')) {
 				// Up to, including, nextcloud 24 the loglevel was not exposed
-				self.context.level = window._oc_config?.loglevel ?? LogLevel.Warn
-				// Override loglevel if we are in debug mode
-				if (window._oc_debug) {
-					self.context.level = LogLevel.Debug
-				}
+				const fallback = window._oc_debug ? LogLevel.Debug : LogLevel.Warn
+				self.context.level = window._oc_config?.loglevel ?? fallback
 				document.removeEventListener('readystatechange', onLoaded)
 			} else {
 				document.addEventListener('readystatechange', onLoaded)
