@@ -8,9 +8,6 @@ import type { IContext, ILogger, ILoggerFactory } from './contracts.ts'
 import { getCurrentUser } from '@nextcloud/auth'
 import { LogLevel } from './contracts.ts'
 
-/**
- * @notExported
- */
 export class LoggerBuilder {
 	protected context: IContext
 

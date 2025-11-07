@@ -1,9 +1,10 @@
 {
-    "$schema": "https://typedoc.org/schema.json",
-    "entryPoints": ["./lib/index.ts"],
-    "out": "dist/doc",
-    "githubPages": true,
-    "navigationLinks": {
-        "GitHub": "https://github.com/nextcloud/nextcloud-logger"
-    }
+	"$schema": "https://typedoc.org/schema.json",
+	"entryPoints": ["./lib/index.ts"],
+	"out": "dist/doc",
+	"githubPages": true,
+	"navigationLinks": {
+		"GitHub": "https://github.com/nextcloud/nextcloud-logger"
+	},
+	"plugin": ["typedoc-plugin-missing-exports"]
 }
