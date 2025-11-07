@@ -2,14 +2,16 @@
  * SPDX-FileCopyrightText: 2020-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
+
+import type { IContext, ILogger, ILoggerFactory } from './contracts'
+
 import { getCurrentUser } from '@nextcloud/auth'
-import { IContext, ILogger, ILoggerFactory, LogLevel } from './contracts'
+import { LogLevel } from './contracts'
 
 /**
  * @notExported
  */
 export class LoggerBuilder {
-
 	protected context: IContext
 
 	protected factory: ILoggerFactory
@@ -39,13 +41,13 @@ export class LoggerBuilder {
 		return this
 	}
 
-	/* eslint-disable jsdoc/no-undefined-types */
 	/**
 	 * Set the user id within the logging context
+	 *
 	 * @param uid User ID
 	 * @see {@link detectUser}
 	 */
-	/* eslint-enable jsdoc/no-undefined-types */
+
 	setUid(uid: string): LoggerBuilder {
 		this.context.uid = uid
 		return this
@@ -95,5 +97,4 @@ export class LoggerBuilder {
 
 		return this.factory(this.context)
 	}
-
 }
