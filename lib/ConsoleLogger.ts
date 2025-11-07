@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { IContext, ILogger } from './contracts'
+import type { IContext, ILogger } from './contracts.ts'
 
-import { LogLevel } from './contracts'
+import { LogLevel } from './contracts.ts'
 
 export class ConsoleLogger implements ILogger {
 	private context: IContext

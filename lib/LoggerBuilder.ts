@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { IContext, ILogger, ILoggerFactory } from './contracts'
+import type { IContext, ILogger, ILoggerFactory } from './contracts.ts'
 
 import { getCurrentUser } from '@nextcloud/auth'
-import { LogLevel } from './contracts'
+import { LogLevel } from './contracts.ts'
 
 /**
  * @notExported

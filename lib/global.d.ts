@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later or LGPL-3.0-or-later
  */
 
-import type { LogLevel } from './contracts'
+import type { LogLevel } from './contracts.ts'
 
 declare global {
 	interface Window {

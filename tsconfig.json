@@ -1,16 +1,18 @@
 {
-    "compilerOptions": {
-        "target": "ESNext",
-        "module": "ESNext",
-        "moduleResolution": "Bundler",
-        "declaration": true,
-        "outDir": "./dist",
-        "declarationDir": "./dist",
-        "strict": true,
-        "lib": [
-            "es6",
-            "dom"
-        ]
-    },
-    "include": [ "lib/*" ]
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"declaration": true,
+		"allowImportingTsExtensions": true,
+		"rewriteRelativeImportExtensions": true,
+		"outDir": "./dist",
+		"declarationDir": "./dist",
+		"strict": true,
+		"lib": [
+			"es6",
+			"dom"
+		]
+	},
+	"include": [ "lib/*" ]
 }

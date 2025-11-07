@@ -3,10 +3,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import type { ILogger } from './contracts'
+import type { ILogger } from './contracts.ts'
 
-import { buildConsoleLogger } from './ConsoleLogger'
-import { LoggerBuilder } from './LoggerBuilder'
+import { buildConsoleLogger } from './ConsoleLogger.ts'
+import { LoggerBuilder } from './LoggerBuilder.ts'
+
+export type { LoggerBuilder }
+export type { ILogger, ILoggerFactory } from './contracts.ts'
 
 /**
  * Build a customized logger instance
@@ -22,9 +25,4 @@ export function getLogger(): ILogger {
 	return getLoggerBuilder().build()
 }
 
-export { type LoggerBuilder }
-export {
-	type ILogger, type ILoggerFactory,
-
-	LogLevel,
-} from './contracts'
+export { LogLevel } from './contracts.ts'
