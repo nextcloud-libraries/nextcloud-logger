@@ -124,7 +124,7 @@ describe('detect logging level', () => {
 			expect(logger.context.level).toBe(window._oc_config.loglevel)
 		})
 
-		it('with `_oc_debug` override', async () => {
+		it('does not override based on `_oc_debug` anymore', async () => {
 			setReadyState('loading')
 			const builder = getLoggerBuilder()
 			builder.detectLogLevel()
@@ -139,26 +139,9 @@ describe('detect logging level', () => {
 
 			// Level should now be set to configured one
 			expect('level' in builder.getContext()).toBe(true)
-			expect(builder.getContext().level).toBe(LogLevel.Debug)
+			expect(builder.getContext().level).toBe(window._oc_config.loglevel)
 		})
 
-		it('with `_oc_debug` override on HTML interactive phase', async () => {
-			setReadyState('loading')
-			const builder = getLoggerBuilder()
-			builder.detectLogLevel()
-
-			// Still loading so no level set
-			expect('level' in builder.getContext()).toBe(false)
-
-			// Trigger document loaded
-			window._oc_debug = true
-			setReadyState('interactive')
-			await new Promise(process.nextTick)
-
-			// Level should now be set to configured one
-			expect('level' in builder.getContext()).toBe(true)
-			expect(builder.getContext().level).toBe(LogLevel.Debug)
-		})
 	})
 })
 
