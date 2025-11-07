@@ -21,13 +21,19 @@ export class ConsoleLogger implements ILogger {
 			msg += context.app + ': '
 		}
 
-		if (typeof message === 'string') { return msg + message }
+		if (typeof message === 'string') {
+			return msg + message
+		}
 
 		// basic error formatting
 		msg += `Unexpected ${message.name}`
-		if (message.message) { msg += ` "${message.message}"` }
+		if (message.message) {
+			msg += ` "${message.message}"`
+		}
 		// only add stack trace when debugging
-		if (level === LogLevel.Debug && message.stack) { msg += `\n\nStack trace:\n${message.stack}` }
+		if (level === LogLevel.Debug && message.stack) {
+			msg += `\n\nStack trace:\n${message.stack}`
+		}
 
 		return msg
 	}
