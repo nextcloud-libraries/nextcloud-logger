@@ -7,6 +7,7 @@ import type { IContext, ILogger } from './contracts.ts'
 
 import { LogLevel } from './contracts.ts'
 
+/* eslint-disable no-console -- This class is a console logger so it needs to write to the console. */
 export class ConsoleLogger implements ILogger {
 	private context: IContext
 
