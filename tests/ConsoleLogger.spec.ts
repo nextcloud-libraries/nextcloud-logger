@@ -2,20 +2,20 @@
  * SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import { afterEach, describe, expect, it, test, vi } from 'vitest'
-import { ConsoleLogger, buildConsoleLogger } from '../lib/ConsoleLogger'
+
+import { beforeEach, describe, expect, it, test, vi } from 'vitest'
+import { buildConsoleLogger, ConsoleLogger } from '../lib/ConsoleLogger.ts'
 
 // Dummy Error
 class MyError extends Error {
-
 	constructor(msg: string) {
 		super(msg)
 		this.name = 'MyError'
 	}
-
 }
 
-afterEach(() => {
+beforeEach(() => {
+	delete window.__NC_LOGGER_DEBUG__
 	vi.resetAllMocks()
 })
 
@@ -33,8 +33,6 @@ test('building the console logger', () => {
 })
 
 describe('ConsoleLogger', () => {
-	afterEach(() => { vi.resetAllMocks() })
-
 	it('logs debug messages', () => {
 		const logger = new ConsoleLogger()
 		const debug = vi.spyOn(window.console, 'debug').mockImplementation(() => {})
@@ -94,10 +92,10 @@ describe('ConsoleLogger', () => {
 		const logger = new ConsoleLogger({ one: 1, two: 2 })
 		const debug = vi.spyOn(window.console, 'debug').mockImplementation(() => {})
 
-		logger.debug('Should be logged', { two: 3 })
+		logger.debug('Should be logged', { three: 3 })
 		expect(debug).toHaveBeenCalledTimes(1)
 		expect(debug.mock.calls[0][0]).toBe('[DEBUG] Should be logged')
-		expect(debug.mock.calls[0][1]).toEqual({ one: 1, two: 3 })
+		expect(debug.mock.calls[0][1]).toEqual({ one: 1, two: 2, three: 3 })
 	})
 
 	it('allows extending empty global context', () => {
@@ -119,6 +117,20 @@ describe('ConsoleLogger', () => {
 		expect(debug).toHaveBeenCalledTimes(0)
 	})
 
+	it('respects the runtime debug configuration', () => {
+		const logger = new ConsoleLogger({ app: 'test', level: 2 })
+
+		const debug = vi.spyOn(window.console, 'debug')
+		debug.mockImplementationOnce(() => {})
+
+		logger.debug('Should not be logged')
+		expect(debug).toHaveBeenCalledTimes(0)
+
+		window.__NC_LOGGER_DEBUG__ = ['files', 'test']
+		logger.debug('Should be logged now')
+		expect(debug).toHaveBeenCalledTimes(1)
+	})
+
 	it('logs Error objects', () => {
 		const error = new MyError('some message')
 		const logger = new ConsoleLogger({})
@@ -128,10 +140,9 @@ describe('ConsoleLogger', () => {
 
 		logger.warn(error)
 		expect(warn).toHaveBeenCalledTimes(1)
-		expect(console[0][0]).toContain('MyError')
-		expect(console[0][0]).toContain('some message')
-		expect(console[0][0]).not.toContain('Stack trace')
+		expect(console[0][0]).toMatch('MyError: some message')
 		expect(console[0][1]).toHaveProperty('error', error)
+		expect(console[0][1]).not.toHaveProperty('stacktrace', error.stack)
 	})
 
 	it('logs Error objects and stack trace on debug', () => {
@@ -143,9 +154,9 @@ describe('ConsoleLogger', () => {
 
 		logger.debug(error)
 		expect(debug).toHaveBeenCalledTimes(1)
-		expect(console[0][0]).toContain('MyError')
-		expect(console[0][0]).toContain('some message')
-		expect(console[0][0]).toContain('Stack trace:')
+		expect(console[0][0]).toContain('MyError: some message')
+		expect(console[0][1]).toHaveProperty('error', error)
+		expect(console[0][1]).toHaveProperty('stacktrace', error.stack)
 	})
 
 	it('logs Error objects and does not override context', () => {
@@ -159,6 +170,8 @@ describe('ConsoleLogger', () => {
 		expect(warn).toHaveBeenCalledTimes(1)
 		expect(console[0][0]).toContain('MyError')
 		expect(console[0][0]).toContain('some message')
-		expect(console[0][1]).toHaveProperty('error', 'none')
+		expect(console[0][1]).toHaveProperty('error')
+		// @ts-expect-error - We know error is an array here
+		expect(console[0][1]!.error).toEqual(['none', error])
 	})
 })
