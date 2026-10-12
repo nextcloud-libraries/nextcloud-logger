@@ -7,6 +7,8 @@ import type { LogLevel } from './contracts.ts'
 
 declare global {
 	interface Window {
+		__NC_LOGGER_DEBUG__?: string[]
+
 		_oc_config: {
 			loglevel: LogLevel
 		}
