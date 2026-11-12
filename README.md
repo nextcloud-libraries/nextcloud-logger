@@ -33,16 +33,30 @@ Right now the package uses `window.console` as log appender and produces the fol
 [WARN] mail: it's just a warning, carry on { app: 'mail', uid: 'christoph' }
 ```
 
+### Log level
 The logger tries to detect the server configured logging level by default,
 which can be configured using the `loglevel_frontend` option in the `config.php`.
-In case no logging level was configured or detection failed, the logger will fallback to the *warning* level.
 
-If the server is set to the debug mode the configured logging level will be set to the *debug* level.
+In case no logging level was configured or detection failed, the logger will fallback to the *warning* level.
+If the server is set to the debug mode the fallback will be the *debug* instead of the *warning* level.
 
 Any message with a lower level than the configured will not be printed on the console.
 
-You can override the logging level in both cases by setting it manually using the `setLogLevel` function
-when building the logger.
+#### Override the log level
+You can override the logging level in both cases by setting it manually
+using the `setLogLevel` function when building the logger.
+
+It is also possible to debug an app without the need of manually recompile it to change the `setLogLevel`.
+To do so the runtime debugging configuration can be changed by running this in the browser console:
+
+```js
+// debug a single app
+window.__NC_LOGGER_DEBUG__=['YOUR_APP_ID']
+// debug multiple apps
+window.__NC_LOGGER_DEBUG__=['files', 'viewer']
+```
+
+This will enforce the *debug* logging level for the specified apps.
 
 ## Contributing
 
